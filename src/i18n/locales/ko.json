@@ -1,11 +1,39 @@
 {
   "nav": {
     "home": "홈",
+    "story": "브랜드 스토리",
     "register": "회원가입",
     "login": "로그인",
     "baziReport": "오행 보고서",
     "products": "제품",
     "memberCenter": "회원 센터"
+  },
+  "story": {
+    "heroTitle": "L'héritage du Dragon",
+    "heroSubtitle": "파리에서 호안끼엠 호수까지의 여정",
+    "scrollHint": "탐색",
+    "originYear": "1928",
+    "originTitle": "기원",
+    "originText": "1928년, 프랑스 금세공 장인 Pierre Moreau가 하노이에 도착했다. 그는 베트남 장인들의 칠기, 자개 상감, 조각 기술에 매료되었다. 호안끼엠 호수 기슭에서 MAISON RỒNG를 설립했다 — 프랑스 디자인과 천 년의 베트남 정수가 만나는 곳.",
+    "craftsTitle": "공예 유산",
+    "craftSonMaiTitle": "칠기 (Sơn Mài)",
+    "craftSonMaiDesc": "베트남 천 년 칠기 — 얇은 칠층이 영원한 아름다움을 빚어낸다.",
+    "craftChamKhacTitle": "금조각",
+    "craftChamKhacDesc": "프랑스 보석 공예 — 한 줄 한 줄이 황금을 승화시킨다.",
+    "craftTheuTayTitle": "수놓기",
+    "craftTheuTayDesc": "후에 왕실 수놓기 — 한 땀 한 땀이 왕조의 이야기를 전한다.",
+    "timelineTitle": "연표",
+    "timeline1928": "Pierre Moreau가 호안끼엠 호수 기슭에 MAISON RỒNG 설립",
+    "timeline1954": "브랜드가 파리로 이전, 베트남 공방 유지",
+    "timeline1990": "2세 Henri Moreau가 베트남 공예 협력 재개",
+    "timeline2026": "MAISON RỒNG가 베트남으로 돌아와 « L'héritage du Dragon » 창조",
+    "philosophyQuote": "부를 과시하는 것이 아니라 — 혈통과 품격을 드러내는 것이다.",
+    "philosophyKeywordSacred": "신성",
+    "philosophyKeywordMysterious": "신비",
+    "philosophyKeywordNoble": "고귀",
+    "philosophyKeywordHeritage": "계승",
+    "exploreTitle": "컬렉션 탐색",
+    "exploreCTA": "컬렉션 탐색"
   },
   "home": {
     "slogan": "L'héritage du Dragon",
@@ -19,7 +47,7 @@
   },
   "guest": {
     "title": "당신의 운명을 발견하세요",
-    "description": "MAISON LẠC 회원으로 가입하여 개인 오행 보고서와 맞춤 제품 추천을 받으세요.",
+    "description": "MAISON RỒNG 회원으로 가입하여 개인 오행 보고서와 맞춤 제품 추천을 받으세요.",
     "cta": "여정 시작하기"
   },
   "register": {
@@ -128,7 +156,7 @@
   },
   "customize": {
     "title": "가족 문장 디자이너",
-    "subtitle": "MAISON LẠC 침구용 독점 문장을 만드세요",
+    "subtitle": "MAISON RỒNG 침구용 독점 문장을 만드세요",
     "surname": "성",
     "surnamePlaceholder": "성을 입력하세요...",
     "style": "문장 스타일",
@@ -225,5 +253,28 @@
     "reasonShare": "SNS 공유",
     "upgradeTitle": "축하합니다!",
     "upgradeMessage": "{tier} 등급에 도달했습니다"
+  },
+  "seo": {
+    "homeTitle": "럭셔리 주얼리 & 액세서리",
+    "homeDescription": "MAISON RỒNG — 프랑스×베트남 럭셔리 브랜드. 풍수 주얼리, 고급 침구, 오행 보고서.",
+    "storyTitle": "브랜드 스토리",
+    "storyDescription": "1928년 파리에서 하노이까지 — 프랑스 디자인과 천 년의 베트남 공예가 만나는 여정.",
+    "registerTitle": "회원가입",
+    "registerDescription": "개인 오행 보고서와 맞춤 상품 추천을 받으려면 가입하세요.",
+    "loginTitle": "로그인",
+    "loginDescription": "MAISON RỒNG 계정으로 로그인하여 회원 센터와 장바구니에 접근.",
+    "cartTitle": "장바구니",
+    "cartDescription": "MAISON RỒNG 럭셔리 주얼리 장바구니를 확인하고 관리.",
+    "checkoutTitle": "결제",
+    "checkoutDescription": "MAISON RỒNG 럭셔리 주얼리 및 액세서리 주문을 완료.",
+    "customizeTitle": "가문 문장 맞춤",
+    "customizeDescription": "Heritage 침구용 독점 가문 문장 디자인 — 세대를 이어갈 유산.",
+    "memberTitle": "회원 센터",
+    "memberDescription": "계정, 포인트, 회원 등급 특권 관리.",
+    "baziReportTitle": "오행 보고서",
+    "baziReportDescription": "개인 오행 보고서를 확인하고 운명에 맞는 상품 발견.",
+    "breadcrumbHome": "홈",
+    "breadcrumbStory": "브랜드 스토리",
+    "breadcrumbProducts": "제품"
   }
 }

@@ -13,7 +13,7 @@ export default function AdminHeader() {
 
   return (
     <header className="flex h-14 items-center justify-between border-b border-brand-gold/10 bg-brand-black/90 px-6 backdrop-blur-md">
-      <h1 className="font-serif text-lg tracking-widest text-brand-gold-light">MAISON LẠC Admin</h1>
+      <h1 className="font-serif text-lg tracking-widest text-brand-gold-light">MAISON RỒNG Admin</h1>
       <button
         type="button"
         onClick={handleLogout}

@@ -1,11 +1,39 @@
 {
   "nav": {
     "home": "Accueil",
+    "story": "Notre Histoire",
     "register": "Inscription",
     "login": "Connexion",
     "baziReport": "Rapport Ngũ Hành",
     "products": "Produits",
     "memberCenter": "Espace membre"
+  },
+  "story": {
+    "heroTitle": "L'héritage du Dragon",
+    "heroSubtitle": "Du Paris d'Haussmann aux rives du Lac Hoàn Kiếm",
+    "scrollHint": "Découvrir",
+    "originYear": "1928",
+    "originTitle": "Les Origines",
+    "originText": "En 1928, l'orfèvre parisien Pierre Moreau posa le pied à Hanoï. Il fut immédiatement séduit par la laque, l'incrustation de nacre et le ciselage des artisans vietnamiens. Sur les rives du Lac Hoàn Kiếm, il fonda MAISON RỒNG — là où le design français rencontre l'essence millénaire du Vietnam.",
+    "craftsTitle": "L'Héritage Artisanal",
+    "craftSonMaiTitle": "Laque (Sơn Mài)",
+    "craftSonMaiDesc": "Mille ans de maîtrise de la laque vietnamienne — chaque couche révèle une beauté intemporelle.",
+    "craftChamKhacTitle": "Ciselure d'Or",
+    "craftChamKhacDesc": "L'héritage joaillier de la France — l'or sublimé par la précision de chaque trait.",
+    "craftTheuTayTitle": "Broderie à la Main",
+    "craftTheuTayDesc": "Broderie de cour impériale de Huế — chaque fil raconte une dynastie.",
+    "timelineTitle": "Chronologie",
+    "timeline1928": "Pierre Moreau fonde MAISON RỒNG au bord du Lac Hoàn Kiếm",
+    "timeline1954": "La Maison retourne à Paris, conservant ses ateliers vietnamiens",
+    "timeline1990": "Henri Moreau, second du nom, relance la collaboration artisanale au Vietnam",
+    "timeline2026": "MAISON RỒNG revient au Vietnam pour écrire « L'héritage du Dragon »",
+    "philosophyQuote": "Ce n'est pas la richesse que l'on exhibe — c'est la lignée et le raffinement que l'on affirme.",
+    "philosophyKeywordSacred": "Sacré",
+    "philosophyKeywordMysterious": "Mystère",
+    "philosophyKeywordNoble": "Noblesse",
+    "philosophyKeywordHeritage": "Héritage",
+    "exploreTitle": "Explorer les Collections",
+    "exploreCTA": "Explorer les Collections"
   },
   "home": {
     "slogan": "L'héritage du Dragon",
@@ -19,7 +47,7 @@
   },
   "guest": {
     "title": "Découvrez votre destin",
-    "description": "Inscrivez-vous à MAISON LẠC pour recevoir votre rapport Ngũ Hành personnalisé et des recommandations exclusives.",
+    "description": "Inscrivez-vous à MAISON RỒNG pour recevoir votre rapport Ngũ Hành personnalisé et des recommandations exclusives.",
     "cta": "Commencer le voyage"
   },
   "register": {
@@ -128,7 +156,7 @@
   },
   "customize": {
     "title": "Créateur de Blason Familial",
-    "subtitle": "Créez votre blason exclusif pour la literie MAISON LẠC",
+    "subtitle": "Créez votre blason exclusif pour la literie MAISON RỒNG",
     "surname": "Nom de famille",
     "surnamePlaceholder": "Entrez votre nom de famille...",
     "style": "Style du blason",
@@ -225,5 +253,28 @@
     "reasonShare": "Partage réseaux sociaux",
     "upgradeTitle": "Félicitations !",
     "upgradeMessage": "Vous avez atteint le niveau {tier}"
+  },
+  "seo": {
+    "homeTitle": "Bijoux & Accessoires de Luxe",
+    "homeDescription": "MAISON RỒNG — maison de luxe franco-vietnamienne. Joaillerie, literie d'exception et rapport des Cinq Éléments personnalisé.",
+    "storyTitle": "Notre Histoire",
+    "storyDescription": "Du Paris de 1928 aux rives du Lac Hoàn Kiếm — où le design français rencontre l'essence millénaire du Vietnam.",
+    "registerTitle": "Inscription Membre",
+    "registerDescription": "Inscrivez-vous pour recevoir votre rapport Ngũ Hành et des recommandations exclusives.",
+    "loginTitle": "Connexion",
+    "loginDescription": "Connectez-vous à votre compte MAISON RỒNG pour accéder à l'espace membre et au panier.",
+    "cartTitle": "Panier",
+    "cartDescription": "Consultez et gérez votre panier de joaillerie et accessoires de luxe MAISON RỒNG.",
+    "checkoutTitle": "Paiement",
+    "checkoutDescription": "Finalisez votre commande de joaillerie et accessoires MAISON RỒNG.",
+    "customizeTitle": "Créateur de Blason",
+    "customizeDescription": "Concevez votre blason familial exclusif pour la literie Heritage — un héritage pour les générations.",
+    "memberTitle": "Espace Membre",
+    "memberDescription": "Gérez votre compte, vos points fidélité et vos privilèges MAISON RỒNG.",
+    "baziReportTitle": "Rapport Ngũ Hành",
+    "baziReportDescription": "Consultez votre rapport des Cinq Éléments et découvrez les créations en harmonie avec votre destin.",
+    "breadcrumbHome": "Accueil",
+    "breadcrumbStory": "Notre histoire",
+    "breadcrumbProducts": "Produits"
   }
 }

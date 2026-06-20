@@ -4,6 +4,17 @@ import ParticleBackground from '@/components/ParticleBackground';
 import FamilyCrestCustomizer from '@/components/FamilyCrestCustomizer';
 import { getUserBySession } from '@/lib/db';
 import { parseCrestConfig } from '@/lib/familyCrest';
+import { buildPageMetadata } from '@/lib/seo';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations('seo');
+  return buildPageMetadata({
+    locale,
+    path: '/products/bedding/customize',
+    title: t('customizeTitle'),
+    description: t('customizeDescription'),
+  });
+}
 
 export default async function BeddingCustomizePage({
   params: { locale },
@@ -29,9 +40,4 @@ export default async function BeddingCustomizePage({
       </div>
     </div>
   );
-}
-
-export async function generateMetadata() {
-  const t = await getTranslations('customize');
-  return { title: `${t('title')} — MAISON LẠC` };
 }

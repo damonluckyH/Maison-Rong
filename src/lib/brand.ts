@@ -1,5 +1,5 @@
 export const BRAND = {
-  name: 'MAISON LẠC',
+  name: 'MAISON RỒNG',
   slogan: "L'héritage du Dragon",
   subtitle: 'Nơi Vận Mệnh Gặp Gỡ Nghệ Thuật',
   tagline: {
@@ -38,7 +38,7 @@ export const LOGO_SVG = `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/200
   <path d="M30 75 Q45 35 60 45 Q75 55 90 40" stroke="#D4A843" stroke-width="2" fill="none"/>
   <path d="M35 80 Q50 60 60 70 Q70 80 85 65" stroke="#C41E3A" stroke-width="1.5" fill="none" opacity="0.8"/>
   <circle cx="60" cy="55" r="8" fill="#D4A843" opacity="0.3"/>
-  <text x="60" y="105" text-anchor="middle" fill="#D4A843" font-family="Cormorant Garamond, serif" font-size="10" letter-spacing="3">MAISON LẠC</text>
+  <text x="60" y="105" text-anchor="middle" fill="#D4A843" font-family="Cormorant Garamond, serif" font-size="10" letter-spacing="3">MAISON RỒNG</text>
 </svg>`;
 
 export const BIRTH_HOURS = [

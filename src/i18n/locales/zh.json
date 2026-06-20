@@ -1,11 +1,39 @@
 {
   "nav": {
     "home": "首页",
+    "story": "品牌故事",
     "register": "注册",
     "login": "登录",
     "baziReport": "五行报告",
     "products": "产品",
     "memberCenter": "会员中心"
+  },
+  "story": {
+    "heroTitle": "L'héritage du Dragon",
+    "heroSubtitle": "从巴黎到还剑湖的旅程",
+    "scrollHint": "探索",
+    "originYear": "1928",
+    "originTitle": "品牌起源",
+    "originText": "1928年，法国金匠Pierre Moreau抵达河内。他被越南工匠的漆艺、螺钿镶嵌与雕刻所深深吸引。在还剑湖畔，他创立了MAISON RỒNG——法式设计与千年越南精髓在此交汇。",
+    "craftsTitle": "工艺传承",
+    "craftSonMaiTitle": "漆器（Sơn Mài）",
+    "craftSonMaiDesc": "越南千年漆艺——薄漆层叠，凝练永恒之美。",
+    "craftChamKhacTitle": "金雕",
+    "craftChamKhacDesc": "法兰西珠宝工艺——每一道线条皆是对黄金的礼赞。",
+    "craftTheuTayTitle": "手工刺绣",
+    "craftTheuTayDesc": "顺化宫廷刺绣——每一针一线，皆是一个王朝的故事。",
+    "timelineTitle": "品牌历程",
+    "timeline1928": "Pierre Moreau在还剑湖畔创立MAISON RỒNG",
+    "timeline1954": "品牌迁回巴黎，保留越南工坊",
+    "timeline1990": "第二代传人Henri Moreau重启越南工艺合作",
+    "timeline2026": "MAISON RỒNG回归越南，为精英阶层打造「龙之传承」",
+    "philosophyQuote": "不是炫耀财富，而是彰显血统与品位。",
+    "philosophyKeywordSacred": "神圣",
+    "philosophyKeywordMysterious": "神秘",
+    "philosophyKeywordNoble": "高贵",
+    "philosophyKeywordHeritage": "传承",
+    "exploreTitle": "探索系列",
+    "exploreCTA": "探索系列"
   },
   "home": {
     "slogan": "L'héritage du Dragon",
@@ -19,7 +47,7 @@
   },
   "guest": {
     "title": "探索您的命运",
-    "description": "注册成为 MAISON LẠC 会员，获取专属五行命盘报告和产品推荐。",
+    "description": "注册成为 MAISON RỒNG 会员，获取专属五行命盘报告和产品推荐。",
     "cta": "开启旅程"
   },
   "register": {
@@ -128,7 +156,7 @@
   },
   "customize": {
     "title": "家族纹章设计器",
-    "subtitle": "为 MAISON LẠC 床品定制专属家族纹章",
+    "subtitle": "为 MAISON RỒNG 床品定制专属家族纹章",
     "surname": "姓氏",
     "surnamePlaceholder": "输入您的姓氏...",
     "style": "纹章风格",
@@ -225,5 +253,28 @@
     "reasonShare": "社交分享",
     "upgradeTitle": "恭喜！",
     "upgradeMessage": "您已升至 {tier} 等级"
+  },
+  "seo": {
+    "homeTitle": "高级珠宝与配饰",
+    "homeDescription": "MAISON RỒNG — 法越奢侈品牌。风水珠宝、高级床品与个人五行报告。",
+    "storyTitle": "品牌故事",
+    "storyDescription": "探索1928年巴黎到河内的旅程——法式设计与千年越南工艺在此交汇。",
+    "registerTitle": "会员注册",
+    "registerDescription": "注册获取个人五行报告与专属产品推荐。",
+    "loginTitle": "登录",
+    "loginDescription": "登录 MAISON RỒNG 账户，访问会员中心、购物车与积分。",
+    "cartTitle": "购物车",
+    "cartDescription": "查看和管理您的 MAISON RỒNG 高级珠宝购物车。",
+    "checkoutTitle": "结账",
+    "checkoutDescription": "完成 MAISON RỒNG 高级珠宝与配饰订单。",
+    "customizeTitle": "家族纹章定制",
+    "customizeDescription": "为 Heritage 床品设计专属家族纹章——世代传承的遗产。",
+    "memberTitle": "会员中心",
+    "memberDescription": "管理账户、积分与会员等级特权。",
+    "baziReportTitle": "五行报告",
+    "baziReportDescription": "查看个人五行报告，发现与您命理相配的产品。",
+    "breadcrumbHome": "首页",
+    "breadcrumbStory": "品牌故事",
+    "breadcrumbProducts": "产品"
   }
 }

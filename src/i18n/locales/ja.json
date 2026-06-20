@@ -1,11 +1,39 @@
 {
   "nav": {
     "home": "ホーム",
+    "story": "ブランドストーリー",
     "register": "登録",
     "login": "ログイン",
     "baziReport": "五行レポート",
     "products": "製品",
     "memberCenter": "会員センター"
+  },
+  "story": {
+    "heroTitle": "L'héritage du Dragon",
+    "heroSubtitle": "パリからホアンキエム湖への旅",
+    "scrollHint": "探索",
+    "originYear": "1928",
+    "originTitle": "起源",
+    "originText": "1928年、フランスの金細工師ピエール・モローがハノイに到着した。彼はベトナム職人の漆芸、螺鈿象嵌、彫刻の技に魅了された。ホアンキエム湖のほとりで、MAISON RỒNGを創設——フランスのデザインと千年のベトナムの精髄が出会う場所。",
+    "craftsTitle": "工芸の継承",
+    "craftSonMaiTitle": "漆器（Sơn Mài）",
+    "craftSonMaiDesc": "ベトナム千年の漆芸——薄い漆の層が時を超えた美を紡ぐ。",
+    "craftChamKhacTitle": "金彫",
+    "craftChamKhacDesc": "フランスの宝飾工芸——一筋一筋が黄金を昇華させる。",
+    "craftTheuTayTitle": "手刺繍",
+    "craftTheuTayDesc": "フエ宮廷刺繍——一針一針が王朝の物語を語る。",
+    "timelineTitle": "年表",
+    "timeline1928": "ピエール・モローがホアンキエム湖畔にMAISON RỒNGを創設",
+    "timeline1954": "ブランドがパリに移り、ベトナムの工房を維持",
+    "timeline1990": "二代目アンリ・モローがベトナム工芸との協力を再開",
+    "timeline2026": "MAISON RỒNGがベトナムに帰還、「L'héritage du Dragon」をエリートのために創造",
+    "philosophyQuote": "富を誇示するのではない——血統と品位を示すのだ。",
+    "philosophyKeywordSacred": "神聖",
+    "philosophyKeywordMysterious": "神秘",
+    "philosophyKeywordNoble": "高貴",
+    "philosophyKeywordHeritage": "継承",
+    "exploreTitle": "コレクションを探索",
+    "exploreCTA": "コレクションを探索"
   },
   "home": {
     "slogan": "L'héritage du Dragon",
@@ -19,7 +47,7 @@
   },
   "guest": {
     "title": "あなたの運命を発見",
-    "description": "MAISON LẠC会員登録で、個人の五行レポートと限定商品のおすすめを受け取りましょう。",
+    "description": "MAISON RỒNG会員登録で、個人の五行レポートと限定商品のおすすめを受け取りましょう。",
     "cta": "旅を始める"
   },
   "register": {
@@ -128,7 +156,7 @@
   },
   "customize": {
     "title": "家紋デザイナー",
-    "subtitle": "MAISON LẠC 寝具用の専属家紋を作成",
+    "subtitle": "MAISON RỒNG 寝具用の専属家紋を作成",
     "surname": "姓",
     "surnamePlaceholder": "姓を入力...",
     "style": "紋章スタイル",
@@ -225,5 +253,28 @@
     "reasonShare": "SNSシェア",
     "upgradeTitle": "おめでとうございます！",
     "upgradeMessage": "{tier} ランクに到達しました"
+  },
+  "seo": {
+    "homeTitle": "高級ジュエリー＆アクセサリー",
+    "homeDescription": "MAISON RỒNG — フランス×ベトナムのラグジュアリーブランド。風水ジュエリー、高級寝具、五行レポート。",
+    "storyTitle": "ブランドストーリー",
+    "storyDescription": "1928年のパリからハノイへ — フランスのデザインと千年のベトナム工芸が出会う物語。",
+    "registerTitle": "会員登録",
+    "registerDescription": "個人五行レポートと限定商品レコメンドを受け取るために登録。",
+    "loginTitle": "ログイン",
+    "loginDescription": "MAISON RỒNG アカウントにログインして会員センターとカートにアクセス。",
+    "cartTitle": "カート",
+    "cartDescription": "MAISON RỒNG の高級ジュエリーカートを確認・管理。",
+    "checkoutTitle": "お支払い",
+    "checkoutDescription": "MAISON RỒNG の高級ジュエリーとアクセサリーの注文を完了。",
+    "customizeTitle": "家紋カスタマイズ",
+    "customizeDescription": "Heritage 寝具用の専用家紋をデザイン — 世代を超える遺産。",
+    "memberTitle": "会員センター",
+    "memberDescription": "アカウント、ポイント、会員特典を管理。",
+    "baziReportTitle": "五行レポート",
+    "baziReportDescription": "個人五行レポートを確認し、運命に合う商品を発見。",
+    "breadcrumbHome": "ホーム",
+    "breadcrumbStory": "ブランドストーリー",
+    "breadcrumbProducts": "製品"
   }
 }

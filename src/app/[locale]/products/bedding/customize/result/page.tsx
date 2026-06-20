@@ -29,5 +29,5 @@ export default function CustomizeResultPage({
 
 export async function generateMetadata() {
   const t = await getTranslations('customize');
-  return { title: `${t('resultTitle')} — MAISON LẠC` };
+  return { title: `${t('resultTitle')} — MAISON RỒNG` };
 }

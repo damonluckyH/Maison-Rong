@@ -118,7 +118,7 @@ export function generateFamilyCrestSvg(config: CrestConfig): string {
     </text>
     <text x="185" y="190" text-anchor="end" fill="${colors.secondary}" opacity="0.6"
       font-family="Cormorant Garamond, serif" font-size="7" letter-spacing="1">
-      MAISON LẠC
+      MAISON RỒNG
     </text>
   </svg>`;
 }

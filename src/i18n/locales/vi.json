@@ -1,11 +1,39 @@
 {
   "nav": {
     "home": "Trang chủ",
+    "story": "Câu Chuyện",
     "register": "Đăng ký",
     "login": "Đăng nhập",
     "baziReport": "Báo cáo Ngũ Hành",
     "products": "Sản phẩm",
     "memberCenter": "Trung tâm thành viên"
+  },
+  "story": {
+    "heroTitle": "L'héritage du Dragon",
+    "heroSubtitle": "Hành Trình Từ Paris Đến Hồ Hoàn Kiếm",
+    "scrollHint": "Khám phá",
+    "originYear": "1928",
+    "originTitle": "Khởi Nguyên",
+    "originText": "Năm 1928, nghệ nhân kim hoàn người Pháp Pierre Moreau đặt chân đến Hà Nội. Ông bị mê hoặc bởi nghệ thuật sơn mài, khảm trai và chạm khắc của những người thợ thủ công Việt Nam. Bên bờ Hồ Hoàn Kiếm, ông thành lập MAISON RỒNG — nơi thiết kế Pháp gặp gỡ tinh hoa nghìn năm Việt Nam.",
+    "craftsTitle": "Di Sản Thủ Công",
+    "craftSonMaiTitle": "Sơn Mài",
+    "craftSonMaiDesc": "Nghệ thuật sơn mài Việt Nam nghìn năm — lớp sơn mỏng tích lũy thành vẻ đẹp vượt thời gian.",
+    "craftChamKhacTitle": "Chạm Khắc Vàng",
+    "craftChamKhacDesc": "Tinh hoa kim hoàn Pháp — nơi vàng được tôn vinh qua từng đường nét tinh xảo.",
+    "craftTheuTayTitle": "Thêu Tay",
+    "craftTheuTayDesc": "Thêu cung đình Huế — mỗi đường kim là một câu chuyện của triều đại.",
+    "timelineTitle": "Dòng Thời Gian",
+    "timeline1928": "Pierre Moreau thành lập MAISON RỒNG bên bờ Hồ Hoàn Kiếm",
+    "timeline1954": "Thương hiệu trở về Paris, giữ nguyên xưởng thủ công tại Việt Nam",
+    "timeline1990": "Thế hệ thứ hai Henri Moreau khôi phục hợp tác nghệ thuật thủ công Việt Nam",
+    "timeline2026": "MAISON RỒNG trở lại Việt Nam, kiến tạo « L'héritage du Dragon » cho giới tinh hoa",
+    "philosophyQuote": "Không phải khoe khoang giàu có — mà là khẳng định huyết thống và đẳng cấp.",
+    "philosophyKeywordSacred": "Thiêng Liêng",
+    "philosophyKeywordMysterious": "Huyền Bí",
+    "philosophyKeywordNoble": "Cao Quý",
+    "philosophyKeywordHeritage": "Kế Thừa",
+    "exploreTitle": "Khám Phá Bộ Sưu Tập",
+    "exploreCTA": "Khám Phá Bộ Sưu Tập"
   },
   "home": {
     "slogan": "L'héritage du Dragon",
@@ -19,7 +47,7 @@
   },
   "guest": {
     "title": "Khám phá vận mệnh của bạn",
-    "description": "Đăng ký thành viên MAISON LẠC để nhận báo cáo Ngũ Hành cá nhân và những đề xuất sản phẩm dành riêng cho bạn.",
+    "description": "Đăng ký thành viên MAISON RỒNG để nhận báo cáo Ngũ Hành cá nhân và những đề xuất sản phẩm dành riêng cho bạn.",
     "cta": "Bắt đầu hành trình"
   },
   "register": {
@@ -128,7 +156,7 @@
   },
   "customize": {
     "title": "Thiết Kế Huy Hiệu Gia Tộc",
-    "subtitle": "Tạo huy hiệu riêng cho bộ ga gia đình MAISON LẠC",
+    "subtitle": "Tạo huy hiệu riêng cho bộ ga gia đình MAISON RỒNG",
     "surname": "Họ",
     "surnamePlaceholder": "Nhập họ của bạn...",
     "style": "Phong cách huy hiệu",
@@ -225,5 +253,28 @@
     "reasonShare": "Chia sẻ mạng xã hội",
     "upgradeTitle": "Chúc mừng!",
     "upgradeMessage": "Bạn đã đạt hạng {tier}"
+  },
+  "seo": {
+    "homeTitle": "Trang Sức & Phụ Kiện Cao Cấp",
+    "homeDescription": "MAISON RỒNG — thương hiệu xa xỉ Pháp-Việt. Trang sức phong thủy, chăn ga cao cấp và báo cáo Ngũ Hành cá nhân.",
+    "storyTitle": "Câu Chuyện Thương Hiệu",
+    "storyDescription": "Khám phá hành trình từ Paris 1928 đến Hà Nội — nơi thiết kế Pháp gặp gỡ tinh hoa nghìn năm Việt Nam.",
+    "registerTitle": "Đăng Ký Thành Viên",
+    "registerDescription": "Đăng ký nhận báo cáo Ngũ Hành cá nhân và đề xuất sản phẩm dành riêng cho bạn.",
+    "loginTitle": "Đăng Nhập",
+    "loginDescription": "Đăng nhập tài khoản MAISON RỒNG để truy cập thành viên, giỏ hàng và điểm thưởng.",
+    "cartTitle": "Giỏ Hàng",
+    "cartDescription": "Xem và quản lý giỏ hàng trang sức cao cấp của bạn tại MAISON RỒNG.",
+    "checkoutTitle": "Thanh Toán",
+    "checkoutDescription": "Hoàn tất đơn hàng trang sức và phụ kiện cao cấp MAISON RỒNG.",
+    "customizeTitle": "Tùy Chỉnh Gia Huy",
+    "customizeDescription": "Thiết kế huy hiệu gia tộc riêng cho bộ ga Heritage — di sản truyền đời.",
+    "memberTitle": "Trung Tâm Thành Viên",
+    "memberDescription": "Quản lý tài khoản, điểm thưởng và đặc quyền hạng thành viên MAISON RỒNG.",
+    "baziReportTitle": "Báo Cáo Ngũ Hành",
+    "baziReportDescription": "Xem báo cáo ngũ hành cá nhân và khám phá sản phẩm hợp mệnh của bạn.",
+    "breadcrumbHome": "Trang chủ",
+    "breadcrumbStory": "Câu chuyện",
+    "breadcrumbProducts": "Sản phẩm"
   }
 }

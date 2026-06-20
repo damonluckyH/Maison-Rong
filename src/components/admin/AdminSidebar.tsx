@@ -16,7 +16,7 @@ export default function AdminSidebar() {
   return (
     <aside className="flex w-56 shrink-0 flex-col border-r border-brand-gold/10 bg-brand-black-light">
       <div className="border-b border-brand-gold/10 px-5 py-6">
-        <p className="font-serif text-lg tracking-widest text-gradient-gold">MAISON LẠC</p>
+        <p className="font-serif text-lg tracking-widest text-gradient-gold">MAISON RỒNG</p>
         <p className="mt-1 text-[10px] uppercase tracking-[0.3em] text-gray-500">Admin Panel</p>
       </div>
       <nav className="flex-1 space-y-1 p-3">

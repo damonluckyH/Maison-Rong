@@ -15,6 +15,9 @@ export default async function NavLinks({ locale }: { locale: string }) {
       <Link href={`/${locale}`} className="text-gray-400 transition hover:text-brand-gold">
         {t('home')}
       </Link>
+      <Link href={`/${locale}/story`} className="text-gray-400 transition hover:text-brand-gold">
+        {t('story')}
+      </Link>
       {user ? (
         <>
           <Link

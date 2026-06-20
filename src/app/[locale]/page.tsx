@@ -9,8 +9,19 @@ import { PRODUCT_LINES } from '@/lib/brand';
 import { getUserBySession } from '@/lib/db';
 import { ALL_PRODUCTS } from '@/lib/products';
 import { recommendProducts, getVietZodiac } from '@/lib/recommendation';
+import { buildPageMetadata } from '@/lib/seo';
 
 const CUSTOMIZABLE_LINES = new Set(['lotus-dream', 'heritage']);
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations('seo');
+  return buildPageMetadata({
+    locale,
+    path: '',
+    title: t('homeTitle'),
+    description: t('homeDescription'),
+  });
+}
 
 export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations('home');

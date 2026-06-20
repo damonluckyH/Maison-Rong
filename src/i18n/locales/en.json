@@ -1,11 +1,39 @@
 {
   "nav": {
     "home": "Home",
+    "story": "Our Story",
     "register": "Register",
     "login": "Login",
     "baziReport": "Bazi Report",
     "products": "Products",
     "memberCenter": "Member Center"
+  },
+  "story": {
+    "heroTitle": "L'héritage du Dragon",
+    "heroSubtitle": "A Journey from Paris to Hoàn Kiếm Lake",
+    "scrollHint": "Explore",
+    "originYear": "1928",
+    "originTitle": "The Beginning",
+    "originText": "In 1928, French goldsmith Pierre Moreau arrived in Hanoi. He was captivated by the lacquer, mother-of-pearl inlay, and engraving of Vietnamese artisans. On the shores of Hoàn Kiếm Lake, he founded MAISON RỒNG — where French design meets a thousand years of Vietnamese excellence.",
+    "craftsTitle": "Craft Heritage",
+    "craftSonMaiTitle": "Lacquer (Sơn Mài)",
+    "craftSonMaiDesc": "A millennium of Vietnamese lacquer artistry — thin layers accumulated into timeless beauty.",
+    "craftChamKhacTitle": "Gold Engraving",
+    "craftChamKhacDesc": "The jewel of French goldsmithing — gold elevated through every precise stroke.",
+    "craftTheuTayTitle": "Hand Embroidery",
+    "craftTheuTayDesc": "Imperial Huế embroidery — each stitch tells the story of a dynasty.",
+    "timelineTitle": "Timeline",
+    "timeline1928": "Pierre Moreau founds MAISON RỒNG on the shores of Hoàn Kiếm Lake",
+    "timeline1954": "The Maison returns to Paris, preserving its Vietnamese workshops",
+    "timeline1990": "Second-generation Henri Moreau renews Vietnamese craft collaboration",
+    "timeline2026": "MAISON RỒNG returns to Vietnam, crafting « L'héritage du Dragon » for the elite",
+    "philosophyQuote": "It is not wealth one displays — but lineage and refinement one affirms.",
+    "philosophyKeywordSacred": "Sacred",
+    "philosophyKeywordMysterious": "Mysterious",
+    "philosophyKeywordNoble": "Noble",
+    "philosophyKeywordHeritage": "Heritage",
+    "exploreTitle": "Explore the Collections",
+    "exploreCTA": "Explore the Collections"
   },
   "home": {
     "slogan": "L'héritage du Dragon",
@@ -19,7 +47,7 @@
   },
   "guest": {
     "title": "Discover your destiny",
-    "description": "Register as a MAISON LẠC member to receive your personal Five Elements report and exclusive product recommendations.",
+    "description": "Register as a MAISON RỒNG member to receive your personal Five Elements report and exclusive product recommendations.",
     "cta": "Begin your journey"
   },
   "register": {
@@ -128,7 +156,7 @@
   },
   "customize": {
     "title": "Family Crest Designer",
-    "subtitle": "Create your exclusive crest for MAISON LẠC bedding",
+    "subtitle": "Create your exclusive crest for MAISON RỒNG bedding",
     "surname": "Surname",
     "surnamePlaceholder": "Enter your surname...",
     "style": "Crest Style",
@@ -225,5 +253,28 @@
     "reasonShare": "Social media share",
     "upgradeTitle": "Congratulations!",
     "upgradeMessage": "You have reached {tier} tier"
+  },
+  "seo": {
+    "homeTitle": "Luxury Jewelry & Accessories",
+    "homeDescription": "MAISON RỒNG — Franco-Vietnamese luxury brand. Feng shui jewelry, premium bedding, and personal Five Elements report.",
+    "storyTitle": "Brand Story",
+    "storyDescription": "Discover the journey from Paris 1928 to Hanoi — where French design meets a millennium of Vietnamese craft.",
+    "registerTitle": "Member Registration",
+    "registerDescription": "Register to receive your personal Five Elements report and exclusive product recommendations.",
+    "loginTitle": "Sign In",
+    "loginDescription": "Sign in to your MAISON RỒNG account to access member center, cart, and rewards.",
+    "cartTitle": "Shopping Cart",
+    "cartDescription": "View and manage your luxury jewelry cart at MAISON RỒNG.",
+    "checkoutTitle": "Checkout",
+    "checkoutDescription": "Complete your MAISON RỒNG luxury jewelry and accessories order.",
+    "customizeTitle": "Family Crest Customizer",
+    "customizeDescription": "Design your exclusive family crest for Heritage bedding — an heirloom for generations.",
+    "memberTitle": "Member Center",
+    "memberDescription": "Manage your account, loyalty points, and member tier privileges at MAISON RỒNG.",
+    "baziReportTitle": "Five Elements Report",
+    "baziReportDescription": "View your personal Five Elements report and discover destiny-matched products.",
+    "breadcrumbHome": "Home",
+    "breadcrumbStory": "Brand story",
+    "breadcrumbProducts": "Products"
   }
 }

@@ -36,7 +36,7 @@ export default function AdminLoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-brand-black px-4">
       <div className="w-full max-w-md rounded-xl border border-brand-gold/20 bg-brand-black-light/60 p-8 backdrop-blur-sm">
         <div className="mb-8 text-center">
-          <p className="font-serif text-2xl tracking-widest text-gradient-gold">MAISON LẠC</p>
+          <p className="font-serif text-2xl tracking-widest text-gradient-gold">MAISON RỒNG</p>
           <p className="mt-2 text-xs uppercase tracking-[0.3em] text-gray-500">Admin Panel</p>
         </div>
 

@@ -1,10 +1,22 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import BaziReport from '@/components/BaziReport';
 import CuratedForYou from '@/components/CuratedForYou';
 import { getUserBySession } from '@/lib/db';
 import { ALL_PRODUCTS } from '@/lib/products';
 import { recommendProducts, getVietZodiac } from '@/lib/recommendation';
+import { buildPageMetadata } from '@/lib/seo';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
+  const t = await getTranslations('seo');
+  return buildPageMetadata({
+    locale,
+    path: '/member/bazi-report',
+    title: t('baziReportTitle'),
+    description: t('baziReportDescription'),
+  });
+}
 
 export default function BaziReportPage({ params: { locale } }: { params: { locale: string } }) {
   const cookieStore = cookies();
