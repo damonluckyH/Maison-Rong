@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum BloodType {
+  A
+  B
+  AB
+  O
+}
+
+enum Element {
+  METAL
+  WOOD
+  WATER
+  FIRE
+  EARTH
+}
+
+enum Tier {
+  BRONZE
+  SILVER
+  GOLD
+  PLATINUM
+  DIAMOND
+}
+
+model User {
+  id             String     @id @default(cuid())
+  email          String?    @unique
+  phone          String?
+  surname        String
+  givenName      String
+  fullName       String
+  birthDate      DateTime
+  gender         Gender
+  bloodType      BloodType
+  baziReport     Json?
+  elementDeficit Element[]
+  points         Int        @default(0)
+  tier           Tier       @default(BRONZE)
+  locale         String     @default("vi")
+  createdAt      DateTime   @default(now())
+}
