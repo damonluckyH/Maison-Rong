@@ -1,28 +1,26 @@
 import { PrismaClient } from '@prisma/client';
+import { PrismaLibSQL } from '@prisma/adapter-libsql';
+import { createClient } from '@libsql/client';
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient | undefined };
 
-function createTursoClient(url: string): PrismaClient {
-  const { PrismaLibSQL } = require('@prisma/adapter-libsql');
-  const { createClient } = require('@libsql/client');
-  const libsql = createClient({ url, authToken: process.env.TURSO_AUTH_TOKEN });
-  const adapter = new PrismaLibSQL(libsql);
-  return new PrismaClient({ adapter: adapter as any });
-}
-
-function createPrismaClient(): PrismaClient {
+function getPrismaClient(): PrismaClient {
   if (globalForPrisma.prisma) return globalForPrisma.prisma;
 
   const url = process.env.DATABASE_URL ?? 'file:./dev.db';
+
   if (url.startsWith('libsql://')) {
-    return createTursoClient(url);
+    const libsql = createClient({
+      url,
+      authToken: process.env.TURSO_AUTH_TOKEN,
+    });
+    const adapter = new PrismaLibSQL(libsql);
+    globalForPrisma.prisma = new PrismaClient({ adapter: adapter as any });
+    return globalForPrisma.prisma;
   }
 
-  return new PrismaClient();
+  globalForPrisma.prisma = new PrismaClient();
+  return globalForPrisma.prisma;
 }
 
-export const prisma = createPrismaClient();
-
-if (process.env.NODE_ENV !== 'production') {
-  globalForPrisma.prisma = prisma;
-}
+export const prisma = getPrismaClient();
