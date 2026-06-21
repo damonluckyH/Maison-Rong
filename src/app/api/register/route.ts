@@ -39,13 +39,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Zalo là bắt buộc' }, { status: 400 });
     }
 
-    if (getUserByEmail(email)) {
+    if (await getUserByEmail(email)) {
       return NextResponse.json({ error: 'Email đã được đăng ký' }, { status: 409 });
     }
 
     const baziReport = generateBaziReport(birthDate, birthHour, gender as Gender);
 
-    const user = createUser({
+    const user = await createUser({
       surname,
       givenName,
       gender: gender as Gender,
@@ -62,9 +62,9 @@ export async function POST(request: NextRequest) {
       locale: locale || 'vi',
     });
 
-    addPointsToUser(user.id, POINTS_RULES.register, 'register');
+    await addPointsToUser(user.id, POINTS_RULES.register, 'register');
 
-    const sessionToken = createSession(user.id);
+    const sessionToken = await createSession(user.id);
 
     const response = NextResponse.json({ success: true, userId: user.id });
     response.cookies.set('session', sessionToken, {

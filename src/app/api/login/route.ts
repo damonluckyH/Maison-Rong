@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Email là bắt buộc' }, { status: 400 });
     }
 
-    const user = getUserByEmail(email);
+    const user = await getUserByEmail(email);
     if (!user) {
       return NextResponse.json(
         { error: 'not_registered', message: 'Email chưa đăng ký. Vui lòng đăng ký trước.' },
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const sessionToken = createSession(user.id);
+    const sessionToken = await createSession(user.id);
     const response = NextResponse.json({ success: true, userId: user.id });
     response.cookies.set('session', sessionToken, {
       httpOnly: true,

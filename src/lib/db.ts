@@ -1,12 +1,12 @@
 import type { BaziReport } from './bazi';
 import { generateBaziReport } from './bazi';
+import { prisma } from './prisma';
 import {
-  addPoints as applyPoints,
-  getPointsHistory,
-  type Tier,
-  type PointsLog,
-  type AddPointsResult,
-} from './loyalty';
+  addPoints,
+  getPointsHistory as fetchPointsHistory,
+} from './loyalty-db';
+import type { Tier, PointsLog, AddPointsResult } from './loyalty';
+import type { User as PrismaUser } from '@prisma/client';
 
 export type { Tier, PointsLog, AddPointsResult };
 export type Gender = 'MALE' | 'FEMALE';
@@ -50,209 +50,167 @@ export interface AdminPointsLog {
   createdAt: Date;
 }
 
-const users = new Map<string, User>();
-const sessions = new Map<string, string>();
 const adminPointsLogs: AdminPointsLog[] = [];
 
-function seedMockUsers() {
-  if (users.size > 0) return;
-
-  const seeds: Omit<User, 'fullName' | 'createdAt' | 'baziReport'>[] = [
-    {
-      id: 'seed_user_1',
-      surname: 'Nguyễn',
-      givenName: 'Minh Anh',
-      gender: 'FEMALE',
-      birthDate: '1990-03-15',
-      bloodType: 'A',
-      email: 'minhanh@email.vn',
-      password: 'demo1234',
-      phone: '0901234567',
-      zalo: '0901234567',
-      locale: 'vi',
-      points: 850,
-      tier: 'BRONZE',
-      tags: { vip: false, blacklist: false },
-    },
-    {
-      id: 'seed_user_2',
-      surname: 'Trần',
-      givenName: 'Thu Hà',
-      gender: 'FEMALE',
-      birthDate: '1988-07-22',
-      bloodType: 'B',
-      email: 'thuha@email.vn',
-      password: 'demo1234',
-      phone: '0912345678',
-      zalo: '0912345678',
-      messenger: 'thuha.fb',
-      locale: 'vi',
-      points: 3200,
-      tier: 'SILVER',
-      tags: { vip: true, blacklist: false },
-    },
-    {
-      id: 'seed_user_3',
-      surname: 'Lê',
-      givenName: 'Văn Đức',
-      gender: 'MALE',
-      birthDate: '1985-11-08',
-      bloodType: 'O',
-      email: 'vanduc@email.vn',
-      password: 'demo1234',
-      zalo: '0987654321',
-      locale: 'vi',
-      points: 12500,
-      tier: 'GOLD',
-      tags: { vip: true, blacklist: false },
-    },
-    {
-      id: 'seed_user_4',
-      surname: 'Phạm',
-      givenName: 'Quốc Bảo',
-      gender: 'MALE',
-      birthDate: '1992-01-30',
-      bloodType: 'AB',
-      email: 'quocbao@email.vn',
-      password: 'demo1234',
-      phone: '0923456789',
-      zalo: '0923456789',
-      locale: 'vi',
-      points: 450,
-      tier: 'BRONZE',
-      tags: { vip: false, blacklist: true },
-    },
-    {
-      id: 'seed_user_5',
-      surname: 'Hoàng',
-      givenName: 'Thị Lan',
-      gender: 'FEMALE',
-      birthDate: '1978-09-12',
-      bloodType: 'A',
-      email: 'thilan@email.vn',
-      password: 'demo1234',
-      zalo: '0977889900',
-      tiktok: '@thilan_lux',
-      locale: 'vi',
-      points: 28000,
-      tier: 'PLATINUM',
-      tags: { vip: true, blacklist: false },
-    },
-    {
-      id: 'seed_user_6',
-      surname: 'Võ',
-      givenName: 'Đình Khang',
-      gender: 'MALE',
-      birthDate: '1995-05-05',
-      bloodType: 'B',
-      email: 'dinhkhang@email.vn',
-      password: 'demo1234',
-      phone: '0934567890',
-      zalo: '0934567890',
-      messenger: 'dinhkhang.messenger',
-      locale: 'vi',
-      points: 62000,
-      tier: 'DIAMOND',
-      tags: { vip: true, blacklist: false },
-    },
-  ];
-
-  for (const seed of seeds) {
-    const user: User = {
-      ...seed,
-      fullName: `${seed.surname} ${seed.givenName}`,
-      baziReport: generateBaziReport(seed.birthDate, seed.birthHour, seed.gender),
-      createdAt: new Date('2026-01-01'),
-    };
-    users.set(user.id, user);
+function parseBaziReport(raw: string | null, birthDate: string, birthHour: string | null, gender: string): BaziReport {
+  if (raw) {
+    return JSON.parse(raw) as BaziReport;
   }
+  return generateBaziReport(birthDate, birthHour ?? undefined, gender as Gender);
 }
 
-seedMockUsers();
-
-export function createUser(data: Omit<User, 'id' | 'fullName' | 'createdAt' | 'points' | 'tier' | 'tags'>): User {
-  const id = `user_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-  const user: User = {
-    ...data,
-    id,
-    fullName: `${data.surname} ${data.givenName}`,
-    points: 0,
-    tier: 'BRONZE',
-    tags: { vip: false, blacklist: false },
-    createdAt: new Date(),
+function mapUser(row: PrismaUser): User {
+  return {
+    id: row.id,
+    surname: row.surname,
+    givenName: row.givenName,
+    fullName: row.fullName,
+    gender: row.gender as Gender,
+    birthDate: row.birthDate,
+    birthHour: row.birthHour ?? undefined,
+    bloodType: row.bloodType as BloodType,
+    email: row.email ?? '',
+    password: row.password ?? '',
+    phone: row.phone ?? undefined,
+    zalo: row.zalo ?? '',
+    messenger: row.messenger ?? undefined,
+    tiktok: row.tiktok ?? undefined,
+    baziReport: parseBaziReport(row.baziReport, row.birthDate, row.birthHour, row.gender),
+    locale: row.locale,
+    points: row.points,
+    tier: row.tier as Tier,
+    tags: { vip: row.vip, blacklist: row.blacklist },
+    createdAt: row.createdAt,
   };
-  users.set(id, user);
-  return user;
 }
 
-export function getUserById(id: string): User | undefined {
-  return users.get(id);
+export async function createUser(
+  data: Omit<User, 'id' | 'fullName' | 'createdAt' | 'points' | 'tier' | 'tags'>,
+): Promise<User> {
+  const row = await prisma.user.create({
+    data: {
+      surname: data.surname,
+      givenName: data.givenName,
+      fullName: `${data.surname} ${data.givenName}`,
+      gender: data.gender,
+      birthDate: data.birthDate,
+      birthHour: data.birthHour ?? null,
+      bloodType: data.bloodType,
+      email: data.email.trim(),
+      password: data.password,
+      phone: data.phone ?? null,
+      zalo: data.zalo,
+      messenger: data.messenger ?? null,
+      tiktok: data.tiktok ?? null,
+      baziReport: JSON.stringify(data.baziReport),
+      locale: data.locale,
+      points: 0,
+      tier: 'BRONZE',
+      vip: false,
+      blacklist: false,
+    },
+  });
+
+  return mapUser(row);
 }
 
-export function getUserByEmail(email: string): User | undefined {
+export async function getUserById(id: string): Promise<User | undefined> {
+  const row = await prisma.user.findUnique({ where: { id } });
+  return row ? mapUser(row) : undefined;
+}
+
+export async function getUserByEmail(email: string): Promise<User | undefined> {
   const normalized = email.trim().toLowerCase();
-  return Array.from(users.values()).find((u) => u.email.toLowerCase() === normalized);
+  const row = await prisma.user.findFirst({
+    where: { email: { equals: normalized } },
+  });
+  if (row) return mapUser(row);
+
+  const all = await prisma.user.findMany({ where: { email: { not: null } } });
+  const match = all.find((u) => u.email?.toLowerCase() === normalized);
+  return match ? mapUser(match) : undefined;
 }
 
-export function createSession(userId: string): string {
+export async function createSession(userId: string): Promise<string> {
   const token = `session_${Date.now()}_${Math.random().toString(36).slice(2, 12)}`;
-  sessions.set(token, userId);
+  await prisma.session.create({ data: { token, userId } });
   return token;
 }
 
-export function getUserBySession(token: string): User | undefined {
-  const userId = sessions.get(token);
-  if (!userId) return undefined;
-  return users.get(userId);
+export async function getUserBySession(token: string): Promise<User | undefined> {
+  const session = await prisma.session.findUnique({
+    where: { token },
+    include: { user: true },
+  });
+  return session?.user ? mapUser(session.user) : undefined;
 }
 
-export function getAllUsers(): User[] {
-  return Array.from(users.values()).sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+export async function getAllUsers(): Promise<User[]> {
+  const rows = await prisma.user.findMany({ orderBy: { createdAt: 'desc' } });
+  return rows.map(mapUser);
 }
 
-export function searchUsers(query: string): User[] {
+export async function searchUsers(query: string): Promise<User[]> {
   const q = query.trim().toLowerCase();
   if (!q) return getAllUsers();
-  return getAllUsers().filter(
-    (u) =>
-      u.fullName.toLowerCase().includes(q) ||
-      u.email?.toLowerCase().includes(q) ||
-      u.phone?.includes(q) ||
-      u.surname.toLowerCase().includes(q) ||
-      u.givenName.toLowerCase().includes(q),
-  );
+
+  const rows = await prisma.user.findMany({ orderBy: { createdAt: 'desc' } });
+  return rows
+    .map(mapUser)
+    .filter(
+      (u) =>
+        u.fullName.toLowerCase().includes(q) ||
+        u.email?.toLowerCase().includes(q) ||
+        u.phone?.includes(q) ||
+        u.surname.toLowerCase().includes(q) ||
+        u.givenName.toLowerCase().includes(q),
+    );
 }
 
-export function updateUserTier(userId: string, tier: Tier): User | undefined {
-  const user = users.get(userId);
-  if (!user) return undefined;
-  user.tier = tier;
-  return user;
+export async function updateUserTier(userId: string, tier: Tier): Promise<User | undefined> {
+  try {
+    const row = await prisma.user.update({ where: { id: userId }, data: { tier } });
+    return mapUser(row);
+  } catch {
+    return undefined;
+  }
 }
 
-export function updateUserTags(userId: string, tags: Partial<UserTags>): User | undefined {
-  const user = users.get(userId);
-  if (!user) return undefined;
-  user.tags = { ...user.tags, ...tags };
-  return user;
+export async function updateUserTags(userId: string, tags: Partial<UserTags>): Promise<User | undefined> {
+  try {
+    const row = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        ...(tags.vip !== undefined ? { vip: tags.vip } : {}),
+        ...(tags.blacklist !== undefined ? { blacklist: tags.blacklist } : {}),
+      },
+    });
+    return mapUser(row);
+  } catch {
+    return undefined;
+  }
 }
 
-export function addPointsToUser(userId: string, amount: number, reason: string): AddPointsResult | null {
-  const user = users.get(userId);
+export async function addPointsToUser(
+  userId: string,
+  amount: number,
+  reason: string,
+): Promise<AddPointsResult | null> {
+  const user = await getUserById(userId);
   if (!user) return null;
-  return applyPoints(user, amount, reason);
+  return addPoints(user, amount, reason);
 }
 
-export function addPointsByAdmin(
+export async function addPointsByAdmin(
   userId: string,
   amount: number,
   reason: string,
   operator: string,
-): AddPointsResult | null {
-  const user = users.get(userId);
+): Promise<AddPointsResult | null> {
+  const user = await getUserById(userId);
   if (!user) return null;
 
-  const result = applyPoints(user, amount, reason);
+  const result = await addPoints(user, amount, reason);
   adminPointsLogs.unshift({
     id: `alog_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
     userId: user.id,
@@ -266,15 +224,15 @@ export function addPointsByAdmin(
   return result;
 }
 
-export function addPointsBatchByAdmin(
+export async function addPointsBatchByAdmin(
   userIds: string[],
   amount: number,
   reason: string,
   operator: string,
-): number {
+): Promise<number> {
   let count = 0;
   for (const userId of userIds) {
-    if (addPointsByAdmin(userId, amount, reason, operator)) count++;
+    if (await addPointsByAdmin(userId, amount, reason, operator)) count++;
   }
   return count;
 }
@@ -283,4 +241,4 @@ export function getAdminPointsLogs(): AdminPointsLog[] {
   return [...adminPointsLogs];
 }
 
-export { getPointsHistory };
+export { fetchPointsHistory as getPointsHistory };

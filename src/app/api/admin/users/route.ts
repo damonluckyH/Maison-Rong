@@ -7,7 +7,7 @@ import {
   getPointsHistory,
   type Tier,
 } from '@/lib/db';
-import { getOrdersByUserId } from '@/lib/orders';
+import { getOrdersByUserId } from '@/lib/orders-db';
 import { requireAdminRequest, unauthorizedResponse } from '@/lib/admin-auth';
 
 export async function GET(request: NextRequest) {
@@ -17,14 +17,14 @@ export async function GET(request: NextRequest) {
   const userId = request.nextUrl.searchParams.get('userId');
 
   if (userId) {
-    const user = getUserById(userId);
+    const user = await getUserById(userId);
     if (!user) return NextResponse.json({ error: 'Không tìm thấy thành viên' }, { status: 404 });
-    const orders = getOrdersByUserId(userId);
-    const pointsLogs = getPointsHistory(userId);
+    const orders = await getOrdersByUserId(userId);
+    const pointsLogs = await getPointsHistory(userId);
     return NextResponse.json({ user, orders, pointsLogs });
   }
 
-  return NextResponse.json({ users: searchUsers(q) });
+  return NextResponse.json({ users: await searchUsers(q) });
 }
 
 export async function PATCH(request: NextRequest) {
@@ -42,13 +42,13 @@ export async function PATCH(request: NextRequest) {
   }
 
   if (tier) {
-    const user = updateUserTier(userId, tier);
+    const user = await updateUserTier(userId, tier);
     if (!user) return NextResponse.json({ error: 'Không tìm thấy thành viên' }, { status: 404 });
     return NextResponse.json({ user });
   }
 
   if (tags) {
-    const user = updateUserTags(userId, tags);
+    const user = await updateUserTags(userId, tags);
     if (!user) return NextResponse.json({ error: 'Không tìm thấy thành viên' }, { status: 404 });
     return NextResponse.json({ user });
   }

@@ -8,7 +8,7 @@ export default async function NavLinks({ locale }: { locale: string }) {
   const t = await getTranslations('nav');
   const cookieStore = cookies();
   const sessionToken = cookieStore.get('session')?.value;
-  const user = sessionToken ? getUserBySession(sessionToken) : undefined;
+  const user = sessionToken ? await getUserBySession(sessionToken) : undefined;
 
   return (
     <nav className="flex items-center gap-4 text-xs tracking-widest uppercase">

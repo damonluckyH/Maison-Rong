@@ -1,3 +1,5 @@
+import { prisma } from './prisma';
+
 export type Tier = 'BRONZE' | 'SILVER' | 'GOLD' | 'PLATINUM' | 'DIAMOND';
 
 export interface TierInfo {
@@ -91,8 +93,6 @@ export const ALL_PRIVILEGES: { key: string; minTier: Tier }[] = TIER_DEFINITIONS
 
 const TIER_ORDER: Tier[] = ['BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND'];
 
-const pointsLogs = new Map<string, PointsLog[]>();
-
 export function calculateTier(points: number): TierInfo {
   let current = TIER_DEFINITIONS[0];
   for (const def of TIER_DEFINITIONS) {
@@ -127,36 +127,4 @@ export function getTierProgress(points: number): number {
 
 export function isPrivilegeUnlocked(userTier: Tier, privilegeMinTier: Tier): boolean {
   return TIER_ORDER.indexOf(userTier) >= TIER_ORDER.indexOf(privilegeMinTier);
-}
-
-export function addPoints(user: LoyaltyUser, amount: number, reason: string): AddPointsResult {
-  const previousTier = user.tier;
-  const newPoints = Math.max(0, user.points + amount);
-  const tierInfo = calculateTier(newPoints);
-
-  user.points = newPoints;
-  user.tier = tierInfo.tier;
-
-  const log: PointsLog = {
-    id: `plog_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
-    userId: user.id,
-    amount,
-    reason,
-    balance: newPoints,
-    createdAt: new Date(),
-  };
-
-  const existing = pointsLogs.get(user.id) ?? [];
-  pointsLogs.set(user.id, [log, ...existing]);
-
-  return {
-    previousTier,
-    newTier: tierInfo.tier,
-    upgraded: TIER_ORDER.indexOf(tierInfo.tier) > TIER_ORDER.indexOf(previousTier),
-    log,
-  };
-}
-
-export function getPointsHistory(userId: string): PointsLog[] {
-  return pointsLogs.get(userId) ?? [];
 }

@@ -25,7 +25,7 @@ export default async function BeddingCustomizePage({
 }) {
   const cookieStore = cookies();
   const sessionToken = cookieStore.get('session')?.value;
-  const user = sessionToken ? getUserBySession(sessionToken) : undefined;
+  const user = sessionToken ? await getUserBySession(sessionToken) : undefined;
   const initialConfig = parseCrestConfig(searchParams);
 
   return (

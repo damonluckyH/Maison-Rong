@@ -11,26 +11,26 @@ import {
   getCartItemCount,
 } from '@/lib/cart';
 
-function getSessionUser() {
+async function getSessionUser() {
   const token = cookies().get('session')?.value;
   if (!token) return undefined;
   return getUserBySession(token);
 }
 
 export async function GET(request: NextRequest) {
-  const user = getSessionUser();
+  const user = await getSessionUser();
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const locale = request.nextUrl.searchParams.get('locale') ?? user.locale;
-  const items = getCartLineItems(user.id, locale);
-  const total = getCartTotal(user.id);
-  const count = getCartItemCount(user.id);
+  const items = await getCartLineItems(user.id, locale);
+  const total = await getCartTotal(user.id);
+  const count = await getCartItemCount(user.id);
 
-  return NextResponse.json({ cart: getCart(user.id), items, total, count });
+  return NextResponse.json({ cart: await getCart(user.id), items, total, count });
 }
 
 export async function POST(request: NextRequest) {
-  const user = getSessionUser();
+  const user = await getSessionUser();
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const body = await request.json();
@@ -40,14 +40,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Thiếu productId' }, { status: 400 });
   }
 
-  addToCart(user.id, productId, quantity);
-  const count = getCartItemCount(user.id);
+  await addToCart(user.id, productId, quantity);
+  const count = await getCartItemCount(user.id);
 
   return NextResponse.json({ success: true, count });
 }
 
 export async function PATCH(request: NextRequest) {
-  const user = getSessionUser();
+  const user = await getSessionUser();
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const body = await request.json();
@@ -57,17 +57,17 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ error: 'Thiếu thông tin' }, { status: 400 });
   }
 
-  updateQuantity(user.id, productId, quantity);
+  await updateQuantity(user.id, productId, quantity);
   const locale = user.locale;
-  const items = getCartLineItems(user.id, locale);
-  const total = getCartTotal(user.id);
-  const count = getCartItemCount(user.id);
+  const items = await getCartLineItems(user.id, locale);
+  const total = await getCartTotal(user.id);
+  const count = await getCartItemCount(user.id);
 
   return NextResponse.json({ items, total, count });
 }
 
 export async function DELETE(request: NextRequest) {
-  const user = getSessionUser();
+  const user = await getSessionUser();
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const productId = request.nextUrl.searchParams.get('productId');
@@ -75,8 +75,8 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ error: 'Thiếu productId' }, { status: 400 });
   }
 
-  removeFromCart(user.id, productId);
-  const count = getCartItemCount(user.id);
+  await removeFromCart(user.id, productId);
+  const count = await getCartItemCount(user.id);
 
   return NextResponse.json({ success: true, count });
 }

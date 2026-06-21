@@ -29,7 +29,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
   const tc = await getTranslations('customize');
   const cookieStore = cookies();
   const sessionToken = cookieStore.get('session')?.value;
-  const user = sessionToken ? getUserBySession(sessionToken) : undefined;
+  const user = sessionToken ? await getUserBySession(sessionToken) : undefined;
 
   const recommended = user
     ? recommendProducts(

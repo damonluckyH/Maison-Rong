@@ -1,54 +1,115 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-enum Gender {
-  MALE
-  FEMALE
-}
-
-enum BloodType {
-  A
-  B
-  AB
-  O
-}
-
-enum Element {
-  METAL
-  WOOD
-  WATER
-  FIRE
-  EARTH
-}
-
-enum Tier {
-  BRONZE
-  SILVER
-  GOLD
-  PLATINUM
-  DIAMOND
-}
-
 model User {
-  id             String     @id @default(cuid())
-  email          String?    @unique
-  phone          String?
-  surname        String
-  givenName      String
-  fullName       String
-  birthDate      DateTime
-  gender         Gender
-  bloodType      BloodType
-  baziReport     Json?
-  elementDeficit Element[]
-  points         Int        @default(0)
-  tier           Tier       @default(BRONZE)
-  locale         String     @default("vi")
-  createdAt      DateTime   @default(now())
+  id         String    @id @default(cuid())
+  email      String?   @unique
+  phone      String?
+  password   String?
+  surname    String
+  givenName  String
+  fullName   String
+  gender     String
+  birthDate  String
+  birthHour  String?
+  bloodType  String
+  zalo       String?
+  messenger  String?
+  tiktok     String?
+  baziReport String?
+  locale     String    @default("vi")
+  points     Int       @default(100)
+  tier       String    @default("BRONZE")
+  vip        Boolean   @default(false)
+  blacklist  Boolean   @default(false)
+  createdAt  DateTime  @default(now())
+  orders     Order[]
+  sessions   Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  userId          String
+  user            User        @relation(fields: [userId], references: [id])
+  customerName    String
+  customerEmail   String?
+  customerPhone   String?
+  recipientName   String
+  recipientPhone  String
+  shippingAddress String
+  shippingNote    String?
+  paymentMethod   String      @default("COD")
+  status          String      @default("PENDING")
+  totalAmount     Int
+  pointsEarned    Int         @default(0)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  items           OrderItem[]
+}
+
+model OrderItem {
+  id          String @id @default(cuid())
+  orderId     String
+  order       Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String
+  productName String
+  quantity    Int
+  unitPrice   Int
+}
+
+model CartItem {
+  id        String @id @default(cuid())
+  userId    String
+  productId String
+  quantity  Int    @default(1)
+
+  @@unique([userId, productId])
+}
+
+model PointsLog {
+  id        String   @id @default(cuid())
+  userId    String
+  amount    Int
+  reason    String
+  balance   Int
+  createdAt DateTime @default(now())
+}
+
+model Product {
+  id            String   @id
+  nameVi        String
+  nameFr        String?
+  nameEn        String?
+  nameKo        String?
+  nameJa        String?
+  nameZh        String?
+  descVi        String
+  descFr        String?
+  descEn        String?
+  descKo        String?
+  descJa        String?
+  descZh        String?
+  productLine   String
+  price         Int
+  elements      String   @default("[]")
+  zodiacs       String   @default("[]")
+  gender        String   @default("UNISEX")
+  tryOnCategory String?
+  overlayScale  Float?
+  createdAt     DateTime @default(now())
 }

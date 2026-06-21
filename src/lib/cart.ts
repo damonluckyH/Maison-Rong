@@ -1,3 +1,4 @@
+import { prisma } from './prisma';
 import { getProductById } from './products';
 
 export interface CartItem {
@@ -17,71 +18,75 @@ export interface CartLineItem extends CartItem {
   image?: string;
 }
 
-const carts = new Map<string, Cart>();
-
-function getOrCreateCart(userId: string): Cart {
-  let cart = carts.get(userId);
-  if (!cart) {
-    cart = { userId, items: [] };
-    carts.set(userId, cart);
-  }
-  return cart;
+async function fetchCartItems(userId: string): Promise<CartItem[]> {
+  const rows = await prisma.cartItem.findMany({ where: { userId } });
+  return rows.map((row) => ({ productId: row.productId, quantity: row.quantity }));
 }
 
-export function getCart(userId: string): Cart {
-  return { ...getOrCreateCart(userId), items: [...getOrCreateCart(userId).items] };
+export async function getCart(userId: string): Promise<Cart> {
+  const items = await fetchCartItems(userId);
+  return { userId, items: [...items] };
 }
 
-export function getCartItemCount(userId: string): number {
-  return getOrCreateCart(userId).items.reduce((sum, item) => sum + item.quantity, 0);
+export async function getCartItemCount(userId: string): Promise<number> {
+  const items = await fetchCartItems(userId);
+  return items.reduce((sum, item) => sum + item.quantity, 0);
 }
 
-export function addToCart(userId: string, productId: string, quantity: number): Cart {
-  const cart = getOrCreateCart(userId);
+export async function addToCart(userId: string, productId: string, quantity: number): Promise<Cart> {
   const qty = Math.max(1, quantity);
-  const existing = cart.items.find((i) => i.productId === productId);
+  const existing = await prisma.cartItem.findUnique({
+    where: { userId_productId: { userId, productId } },
+  });
+
   if (existing) {
-    existing.quantity += qty;
+    await prisma.cartItem.update({
+      where: { userId_productId: { userId, productId } },
+      data: { quantity: existing.quantity + qty },
+    });
   } else {
-    cart.items.push({ productId, quantity: qty });
+    await prisma.cartItem.create({
+      data: { userId, productId, quantity: qty },
+    });
   }
+
   return getCart(userId);
 }
 
-export function removeFromCart(userId: string, productId: string): Cart {
-  const cart = getOrCreateCart(userId);
-  cart.items = cart.items.filter((i) => i.productId !== productId);
+export async function removeFromCart(userId: string, productId: string): Promise<Cart> {
+  await prisma.cartItem.deleteMany({ where: { userId, productId } });
   return getCart(userId);
 }
 
-export function updateQuantity(userId: string, productId: string, quantity: number): Cart {
-  const cart = getOrCreateCart(userId);
-  const item = cart.items.find((i) => i.productId === productId);
-  if (!item) return getCart(userId);
+export async function updateQuantity(userId: string, productId: string, quantity: number): Promise<Cart> {
   if (quantity <= 0) {
-    cart.items = cart.items.filter((i) => i.productId !== productId);
+    await prisma.cartItem.deleteMany({ where: { userId, productId } });
   } else {
-    item.quantity = quantity;
+    await prisma.cartItem.upsert({
+      where: { userId_productId: { userId, productId } },
+      create: { userId, productId, quantity },
+      update: { quantity },
+    });
   }
   return getCart(userId);
 }
 
-export function clearCart(userId: string): void {
-  carts.set(userId, { userId, items: [] });
+export async function clearCart(userId: string): Promise<void> {
+  await prisma.cartItem.deleteMany({ where: { userId } });
 }
 
-export function getCartTotal(userId: string): number {
-  const cart = getOrCreateCart(userId);
-  return cart.items.reduce((sum, item) => {
+export async function getCartTotal(userId: string): Promise<number> {
+  const items = await fetchCartItems(userId);
+  return items.reduce((sum, item) => {
     const product = getProductById(item.productId);
     if (!product) return sum;
     return sum + product.price * item.quantity;
   }, 0);
 }
 
-export function getCartLineItems(userId: string, locale = 'vi'): CartLineItem[] {
-  const cart = getOrCreateCart(userId);
-  return cart.items
+export async function getCartLineItems(userId: string, locale = 'vi'): Promise<CartLineItem[]> {
+  const items = await fetchCartItems(userId);
+  return items
     .map((item) => {
       const product = getProductById(item.productId);
       if (!product) return null;

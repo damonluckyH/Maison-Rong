@@ -16,12 +16,12 @@ export async function GET(request: NextRequest) {
   const userId = request.nextUrl.searchParams.get('userId');
 
   if (userId) {
-    const user = getUserById(userId);
+    const user = await getUserById(userId);
     if (!user) return NextResponse.json({ error: 'Không tìm thấy thành viên' }, { status: 404 });
     return NextResponse.json({ user });
   }
 
-  const users = searchUsers(q);
+  const users = await searchUsers(q);
   const logs = getAdminPointsLogs();
 
   return NextResponse.json({ users, logs });
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (userIds && userIds.length > 0) {
-    const count = addPointsBatchByAdmin(userIds, amount, reason, operator);
+    const count = await addPointsBatchByAdmin(userIds, amount, reason, operator);
     return NextResponse.json({ success: true, count, logs: getAdminPointsLogs() });
   }
 
@@ -53,9 +53,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Chọn thành viên' }, { status: 400 });
   }
 
-  const result = addPointsByAdmin(userId, amount, reason, operator);
+  const result = await addPointsByAdmin(userId, amount, reason, operator);
   if (!result) return NextResponse.json({ error: 'Không tìm thấy thành viên' }, { status: 404 });
 
-  const user = getUserById(userId);
+  const user = await getUserById(userId);
   return NextResponse.json({ success: true, user, result, logs: getAdminPointsLogs() });
 }

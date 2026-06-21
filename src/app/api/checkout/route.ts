@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import { getUserBySession, addPointsToUser } from '@/lib/db';
 import { getCartLineItems, getCartTotal, clearCart } from '@/lib/cart';
-import { createOrder, type PaymentMethod } from '@/lib/orders';
+import { createOrder } from '@/lib/orders-db';
+import type { PaymentMethod } from '@/lib/orders';
 
 export async function POST(request: NextRequest) {
   const token = cookies().get('session')?.value;
-  const user = token ? getUserBySession(token) : undefined;
+  const user = token ? await getUserBySession(token) : undefined;
 
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -33,15 +34,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Vui lòng điền đầy đủ thông tin giao hàng' }, { status: 400 });
   }
 
-  const items = getCartLineItems(user.id, locale);
+  const items = await getCartLineItems(user.id, locale);
   if (items.length === 0) {
     return NextResponse.json({ error: 'Giỏ hàng trống' }, { status: 400 });
   }
 
-  const totalAmount = getCartTotal(user.id);
+  const totalAmount = await getCartTotal(user.id);
   const pointsEarned = Math.floor(totalAmount / 1000);
 
-  const order = createOrder({
+  const order = await createOrder({
     userId: user.id,
     customerName: user.fullName,
     customerEmail: user.email,
@@ -62,10 +63,10 @@ export async function POST(request: NextRequest) {
   });
 
   if (pointsEarned > 0) {
-    addPointsToUser(user.id, pointsEarned, 'purchase');
+    await addPointsToUser(user.id, pointsEarned, 'purchase');
   }
 
-  clearCart(user.id);
+  await clearCart(user.id);
 
   return NextResponse.json({
     success: true,
