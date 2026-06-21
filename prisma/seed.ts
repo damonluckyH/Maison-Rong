@@ -1,8 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../src/lib/prisma';
 import { generateBaziReport } from '../src/lib/bazi';
 import { ALL_PRODUCTS } from '../src/lib/products';
-
-const prisma = new PrismaClient();
 
 const SEED_USERS = [
   {
